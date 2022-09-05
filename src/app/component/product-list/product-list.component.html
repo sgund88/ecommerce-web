@@ -1,0 +1,57 @@
+<div class="container">
+  <ng-container *ngFor="let item of products; index as i">
+    <div
+      class="card "
+      style=" cursor: pointer"
+    >
+      <div class="card-body">
+        <img
+          src="{{ item.image }}"
+          class="card-img-top rounded mx-auto d-block"
+          alt=""
+        />
+
+        <div [routerLink]="['/product', item.id]">
+          <h5
+            class="card-title h6"
+            style="
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+            "
+          >
+            {{ item.title }}
+          </h5>
+          <p
+            style="text-align: justify; text-justify: inter-word"
+            class="card-text"
+            style="
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical;
+            "
+          >
+            {{ item.description }}
+          </p>
+          <p><strong>Price:</strong> ${{ item.price }}</p>
+        </div>
+        <button
+          class="btn btn-primary btn-sm m-2"
+          (click)="addtocart(item)"
+          [disabled]="checkProductCart(item)"
+        >
+          Add to cart
+        </button>
+        <button
+          class="btn btn-danger btn-sm m-2"
+          (click)="removeToCart(item)"
+          *ngIf="checkProductCart(item)"
+        >
+          Remove cart
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>
