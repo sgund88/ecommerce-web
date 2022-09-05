@@ -10,6 +10,7 @@ import { CartComponent } from './component/cart/cart.component';
 import { LoaderComponent } from './component/loader/loader.component';
 import { LoaderInterceptor } from './loader.interceptor';
 import { ProductComponent } from './component/product/product.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { ProductComponent } from './component/product/product.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}

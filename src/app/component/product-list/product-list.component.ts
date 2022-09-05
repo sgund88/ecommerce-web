@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { EMPTY } from 'rxjs';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductServiceService } from 'src/app/service/product-service.service';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  providers: [NgbRatingConfig]
 })
 
 export class ProductListComponent implements OnInit {
   products: any;
-  constructor(private productService: ProductServiceService, private cartService: CartService) {
+  constructor(private productService: ProductServiceService, private cartService: CartService, config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
     this.getList();
   }
 

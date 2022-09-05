@@ -3,17 +3,21 @@ import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { Product } from 'src/app/model/product.model';
 import { CartService } from 'src/app/service/cart.service';
 import { ProductServiceService } from 'src/app/service/product-service.service';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  styleUrls: ['./product.component.css'],
+  providers: [NgbRatingConfig]
 })
 export class ProductComponent implements OnInit {
   product: Product;
   id: any;
 
-  constructor(private router: Router, private _Activatedroute: ActivatedRoute, private _productService: ProductServiceService, private cartService: CartService) {
+  constructor(private router: Router, private _Activatedroute: ActivatedRoute, private _productService: ProductServiceService, private cartService: CartService, config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
   }
 
   sub: any;

@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/service/cart.service';
+import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  providers: [NgbRatingConfig]
 })
 export class CartComponent implements OnInit {
   public products: any = [];
   public grandTotal !: number;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, config: NgbRatingConfig) {
+    config.max = 5;
+    config.readonly = true;
+  }
 
   ngOnInit(): void {
     this.cartService.getProducts()
