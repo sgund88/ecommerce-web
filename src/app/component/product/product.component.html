@@ -1,31 +1,54 @@
-<div class="container">
-    <div class="card m-2">
-      <div class="row g-0">
-        <div class="col-md-3 d-flex justify-content-center">
-          <img src="{{ product.image }}" style="width: 200px; height: 200px" class="img-fluid rounded-start" alt="" />
-        </div>
-        <div class="col-md-9">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.title }} ( {{ product.category }} )</h5>
-            <p class="card-text">
-              <small class="text-muted">{{ product.description }}</small>
-            </p>
-            <p class="card-text">
-            Price: <b>${{ product.price }}</b>
-            </p>
-            <div class="rating-box">
-              <ngb-rating [(rate)]="product.rating.rate" class="rating"></ngb-rating>
-              <pre style="margin: 0;justify-content: center;"> (<b>{{ product.rating.count }}</b>)</pre>
-            </div>
-            <hr>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button class="btn btn-primary me-md-2" type="button" (click)="addtocart(product)"
-                *ngIf="!checkProductCart(product)">Add to cart</button>
-              <button class="btn btn-danger" type="button" (click)="removeToCart(product)" *ngIf="checkProductCart(product)">Remove
-                cart</button>
-            </div>
+<div class="container" *ngIf="product.image">
+  <div class="card m-2">
+    <div class="row g-0">
+      <div class="col-md-3 d-flex justify-content-center">
+        <img
+          [src]="(product != null) ? product.image : 'https://avatars.githubusercontent.com/u/55232624?v=4'"
+          style="width: 200px; height: 200px"
+          class="img-fluid rounded-start"
+          alt=""
+        />
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <a [routerLink]="['/product', product.id]" style="cursor:auto;text-decoration-line: none;margin: 0;padding: 0;">
+          <p class="card-title">
+           <b>{{ product.title }}</b>
+           </p>
+          <div class="text-muted m-0 p-0">( {{ product.category }} )</div>
+          </a>
+          <p class="card-text">
+            <small class="card-text justify-content">{{ product.description }}</small>
+          </p>
+          <div class="rating-box">
+            <ngb-rating [(rate)]="product.rating.rate" class="rating"></ngb-rating>
+            <pre style="margin: 0;justify-content: center;"> (<b>{{ product.rating.count }}</b>)</pre>
+          </div>
+          <p class="card-text"><b>₹{{ product.price }}</b></p>
+          <hr />
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button routerLink="/products" class="btn btn-outline-primary me-md-2">
+              Shop More
+            </button>
+            <button
+              class="btn btn-primary btn-sm"
+              type="button"
+              (click)="addtocart(product)"
+              *ngIf="!checkProductCart(product)"
+            >
+              Add to cart
+            </button>
+            <button
+              class="btn btn-danger btn-sm"
+              type="button"
+              (click)="removeToCart(product)"
+              *ngIf="checkProductCart(product)"
+            >
+              Remove cart
+            </button>
           </div>
         </div>
-        </div>
       </div>
+    </div>
+  </div>
 </div>

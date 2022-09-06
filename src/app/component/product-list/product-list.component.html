@@ -1,62 +1,4 @@
-<!-- <div class="container">
-  <ng-container *ngFor="let item of products; index as i">
-    <div
-      class="card "
-      style=" cursor: pointer"
-    >
-      <div class="card-body">
-        <img
-          src="{{ item.image }}"
-          class="card-img-top rounded mx-auto d-block"
-          alt=""
-        />
-
-        <div [routerLink]="['/product', item.id]">
-          <h5
-            class="card-title h6"
-            style="
-              overflow: hidden;
-              display: -webkit-box;
-              -webkit-line-clamp: 1;
-              -webkit-box-orient: vertical;
-            "
-          >
-            {{ item.title }}
-          </h5>
-          <p
-            style="text-align: justify; text-justify: inter-word"
-            class="card-text"
-            style="
-              overflow: hidden;
-              display: -webkit-box;
-              -webkit-line-clamp: 4;
-              -webkit-box-orient: vertical;
-            "
-          >
-            {{ item.description }}
-          </p>
-          <p><strong>Price:</strong> ${{ item.price }}</p>
-        </div>
-        <button
-          class="btn btn-primary btn-sm m-2"
-          (click)="addtocart(item)"
-          [disabled]="checkProductCart(item)"
-        >
-          Add to cart
-        </button>
-        <button
-          class="btn btn-danger btn-sm m-2"
-          (click)="removeToCart(item)"
-          *ngIf="checkProductCart(item)"
-        >
-          Remove cart
-        </button>
-      </div>
-    </div>
-  </ng-container>
-</div> -->
-
-  <div class="product-list">
+<div class="product-list">
     <ng-container *ngFor="let product of products; let i = index">
       <div class="card m-2 col-sm-3">
         <div class="row g-0">
@@ -84,7 +26,7 @@
                   -webkit-box-orient: vertical;
                 "
               >
-                {{ product.title }}
+                <b>{{ product.title }}</b>
               </p>
               <div class="text-muted m-0 p-0">( {{ product.category }} )</div>
             </a>
@@ -97,7 +39,7 @@
               <p class="card-text"><b>₹{{ product.price }}</b></p>
             <p class="d-grid gap-2 d-md-flex justify-content-md-start">
               <button
-                class="btn btn-outline-primary me-md-2"
+                class="btn btn-outline-primary btn-sm me-md-2"
                 type="button"
                 (click)="addtocart(product)"
                 [disabled]="checkProductCart(product)"
@@ -105,7 +47,7 @@
                 Add to cart
               </button>
               <button
-                class="btn btn-outline-danger"
+                class="btn btn-outline-danger btn-sm"
                 type="button"
                 (click)="removeToCart(product)"
                 *ngIf="checkProductCart(product)"

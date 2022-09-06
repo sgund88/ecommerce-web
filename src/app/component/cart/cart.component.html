@@ -1,7 +1,5 @@
 <ng-container *ngIf="products.length != 0">
-  <div class="container" style="margin-bottom: 100px">
     <ng-container *ngFor="let product of products; let i = index">
-      <div class="container">
         <div class="card m-2">
           <div class="row g-0">
             <div class="col-md-3 d-flex justify-content-center">
@@ -9,20 +7,18 @@
                 src="{{ product.image }}"
                 style="width: 200px; height: 200px"
                 class="img-fluid rounded-start"
-                alt=""
+                alt="product image"
               />
             </div>
             <div class="col-md-9">
               <div class="card-body">
-                <h5 class="card-title">
-                  {{ product.title }} ( {{ product.category }} )
-                </h5>
-                <p class="card-text">
-                  <small class="text-muted">{{ product.description }}</small>
+                <a [routerLink]="['/product', product.id]" style="cursor: pointer;text-decoration-line: none;margin: 0;padding: 0;">
+                <p class="card-title">
+                  <b>{{ product.title }}</b>
                 </p>
-                <p class="card-text">
-                  Price: <b>${{ product.price }}</b>
-                </p>
+                <div class="text-muted m-0 p-0">( {{ product.category }} )</div>
+                </a>
+                <p class="card-text">{{ product.description }}</p>
                 <div class="rating-box">
                   <ngb-rating
                     [(rate)]="product.rating.rate"
@@ -32,9 +28,10 @@
                     style="margin: 0; justify-content: center"
                   > (<b>{{ product.rating.count }}</b>)</pre>
                 </div>
+                <p class="card-text"><b>₹{{ product.price }}</b></p>
                 <hr />
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                  <p class="card-text me-md-2">
+                  <div class="row g-0">
+                  <div class="col-md-4 d-flex justify-content-start gap-1">
                     <button
                       class="btn btn-sm btn-outline-light"
                       style="
@@ -49,7 +46,7 @@
                     >
                       -
                     </button>
-                    {{ product.quantity }}
+                    <b>{{ product.quantity }}</b>
                     <button
                       class="btn btn-sm btn-outline-light"
                       style="
@@ -64,50 +61,38 @@
                     >
                       +
                     </button>
-                  </p>
-                  <p class="card-text">
-                    <strong>Total:</strong> ${{ getTotalRoundOf(product.total) }}
                     <button (click)="removeItem(product)" class="btn btn-sm btn-danger">
                       <i class="fas fa-trash-alt"></i>
                     </button>
-                  </p>
+                  </div>
+                  <div class="col-md-8 d-flex justify-content-end">
+                    Total: <b>₹{{
+                      getTotalRoundOf(product.total)
+                    }}</b>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </ng-container>
-  </div>
-  <div class="container" style="position: fixed; bottom: 0; width: 100%">
-    <table
-      class="table table-sm"
-      style="background-color: #ffffff; margin-bottom: 0"
-    >
-      <tbody style="height: 10px !important; overflow: scroll">
-        <tr>
-          <td>
-            <button (click)="emptycart()" class="btn btn-danger">
-              Empty Cart
-            </button>
-          </td>
-          <td>
-            <button routerLink="/products" class="btn btn-primary">
-              Shop More
-            </button>
-          </td>
-          <td>
-            <strong>Grand Total : {{ grandTotal }}</strong>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="card m-2">
+    <div class="row g-0 p-3">
+      <div class="col-md-4 d-grid gap-2 d-md-block">
+        <button (click)="emptycart()" class="btn btn-danger">Empty Cart</button>
+        <button routerLink="/products" class="btn btn-primary">
+          Shop More
+        </button>
+      </div>
+      <div class="col-md-8 d-flex justify-content-end">
+        Grand Total: <b>₹{{ grandTotal }}</b>
+      </div>
+    </div>
   </div>
 </ng-container>
 <ng-container *ngIf="products.length == 0">
-  <div class="container">
+  <div class="container mt-5">
     <div class="card p-5">
-      <h5 class="card-title">My Cart</h5>
       <div class="card-text">
         <h4>Your cart is empty!</h4>
         <h6>Add product to it now</h6>

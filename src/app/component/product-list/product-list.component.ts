@@ -13,7 +13,7 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 export class ProductListComponent implements OnInit {
   products: any;
   constructor(private productService: ProductServiceService, private cartService: CartService, config: NgbRatingConfig) {
-    config.max = 5;
+    config.max = 5.0;
     config.readonly = true;
     this.getList();
   }
