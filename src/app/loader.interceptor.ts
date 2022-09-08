@@ -14,6 +14,7 @@ export class LoaderInterceptor implements HttpInterceptor {
         if (event.type == HttpEventType.Response) {
           if (event.status == 200) {
             this.prodService.loader.next(false);
+            this.prodService.alertBox.next({active:false, message: "", status: ""});
           }
         }
       })

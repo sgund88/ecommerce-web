@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ProductServiceService } from './product-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class CartService {
   public cartItemList: any = [];
   public productList = new BehaviorSubject<any>([]);
 
-  constructor() { }
+  constructor(private productService: ProductServiceService) { }
   getProducts() {
     return this.productList.asObservable();
   }
@@ -18,7 +19,7 @@ export class CartService {
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
-    alert("Product added Successfully");
+    this.productService.alertBox.next({ active: true, message: "product successfully added to the cart!!!", status: "success" });
   }
 
   getTotalPrice(): number {
@@ -36,11 +37,13 @@ export class CartService {
       }
     })
     this.productList.next(this.cartItemList);
+    this.productService.alertBox.next({ active: true, message: "product successfully removed from the cart.", status: "danger" });
   }
 
   removeAllCart() {
     this.cartItemList = []
     this.productList.next(this.cartItemList);
+    this.productService.alertBox.next({ active: true, message: "All product successfully removed from the cart.", status: "danger" });
   }
 
   setQuantity(action: string, item: any) {

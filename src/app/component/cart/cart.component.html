@@ -79,10 +79,8 @@
   <div class="card m-2">
     <div class="row g-0 p-3">
       <div class="col-md-4 d-grid gap-2 d-md-block">
-        <button (click)="emptycart()" class="btn btn-danger">Empty Cart</button>
-        <button routerLink="/products" class="btn btn-primary">
-          Shop More
-        </button>
+        <button (click)="emptycart()" class="btn btn-danger btn-sm">Empty Cart</button>
+        <button routerLink="/products" class="btn btn-primary btn-sm">Shop More</button>
       </div>
       <div class="col-md-8 d-flex justify-content-end">
         Grand Total: <b>₹{{ grandTotal }}</b>

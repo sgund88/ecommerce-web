@@ -37,7 +37,6 @@ export class ProductListComponent implements OnInit {
 
   removeToCart(item: any) {
     this.cartService.removeCartItem(item);
-    alert("product successfully removed")
   }
 
   checkProductCart(item: any) {

@@ -11,6 +11,7 @@ import { LoaderComponent } from './component/loader/loader.component';
 import { LoaderInterceptor } from './loader.interceptor';
 import { ProductComponent } from './component/product/product.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertBoxComponent } from './component/alert-box/alert-box.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductListComponent,
     CartComponent,
     LoaderComponent,
-    ProductComponent
+    ProductComponent,
+    AlertBoxComponent
   ],
   imports: [
     BrowserModule,
