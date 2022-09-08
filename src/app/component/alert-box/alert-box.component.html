@@ -1,0 +1,4 @@
+<div ngClass="alert alert-{{alertBox.status}} alert-dismissible fade show sticky-top" role="alert" *ngIf="alertBox.active">
+  {{alertBox.message}}
+  <button type="button" (click)="closeAlert()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>

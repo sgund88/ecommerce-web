@@ -1,0 +1,62 @@
+<div class="product-list">
+    <ng-container *ngFor="let product of products; let i = index">
+      <div class="card m-2 col-sm-3">
+        <div class="row g-0">
+          <div class="d-flex justify-content-center">
+            <a [routerLink]="['/product', product.id]" style="cursor: pointer;text-decoration-line: none;margin: 0;padding: 0;">
+            <img
+              src="{{ product.image }}"
+              style="width: 200px; height: 200px"
+              class="img-fluid rounded-start"
+              alt=""
+            />
+            </a>
+          </div>
+          <div class="card-body" style="padding: 7px 5px">
+            <a
+              [routerLink]="['/product', product.id]"
+              style="cursor: pointer;text-decoration-line: none;margin: 0;padding: 0;"
+            >
+              <p
+                class="card-title"
+                style="
+                  overflow: hidden;
+                  display: -webkit-box;
+                  -webkit-line-clamp: 1;
+                  -webkit-box-orient: vertical;
+                "
+              >
+                <b>{{ product.title }}</b>
+              </p>
+              <div class="text-muted m-0 p-0">( {{ product.category }} )</div>
+            </a>
+              <p class="card-text">
+              <div class="rating-box">
+                <ngb-rating
+                  [(rate)]="product.rating.rate" class="rating"></ngb-rating>
+                <pre style="margin: 0;justify-content: center;"> (<b>{{ product.rating.count }}</b>)</pre>
+              </div>
+              <p class="card-text"><b>₹{{ product.price }}</b></p>
+            <p class="d-grid gap-2 d-md-flex justify-content-md-start">
+              <button
+                class="btn btn-outline-primary btn-sm me-md-2"
+                type="button"
+                (click)="addtocart(product)"
+                [disabled]="checkProductCart(product)"
+              >
+                Add to cart
+              </button>
+              <button
+                class="btn btn-outline-danger btn-sm"
+                type="button"
+                (click)="removeToCart(product)"
+                *ngIf="checkProductCart(product)"
+              >
+                Remove cart
+              </button>
+            </p>
+            </div>
+          </div>
+        </div>
+    </ng-container>
+  </div>

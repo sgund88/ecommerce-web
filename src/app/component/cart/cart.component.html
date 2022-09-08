@@ -1,0 +1,101 @@
+<ng-container *ngIf="products.length != 0">
+    <ng-container *ngFor="let product of products; let i = index">
+        <div class="card m-2">
+          <div class="row g-0">
+            <div class="col-md-3 d-flex justify-content-center">
+              <img
+                src="{{ product.image }}"
+                style="width: 200px; height: 200px"
+                class="img-fluid rounded-start"
+                alt="product image"
+              />
+            </div>
+            <div class="col-md-9">
+              <div class="card-body">
+                <a [routerLink]="['/product', product.id]" style="cursor: pointer;text-decoration-line: none;margin: 0;padding: 0;">
+                <p class="card-title">
+                  <b>{{ product.title }}</b>
+                </p>
+                <div class="text-muted m-0 p-0">( {{ product.category }} )</div>
+                </a>
+                <p class="card-text">{{ product.description }}</p>
+                <div class="rating-box">
+                  <ngb-rating
+                    [(rate)]="product.rating.rate"
+                    class="rating"
+                  ></ngb-rating>
+                  <pre
+                    style="margin: 0; justify-content: center"
+                  > (<b>{{ product.rating.count }}</b>)</pre>
+                </div>
+                <p class="card-text"><b>₹{{ product.price }}</b></p>
+                <hr />
+                  <div class="row g-0">
+                  <div class="col-md-4 d-flex justify-content-start gap-1">
+                    <button
+                      class="btn btn-sm btn-outline-light"
+                      style="
+                        text-decoration: none;
+                        display: inline-block;
+                        cursor: pointer;
+                        border: none;
+                        background-color: #e7e7e7;
+                        color: black;
+                      "
+                      (click)="setQuantity('-', product)"
+                    >
+                      -
+                    </button>
+                    <b>{{ product.quantity }}</b>
+                    <button
+                      class="btn btn-sm btn-outline-light"
+                      style="
+                        text-decoration: none;
+                        display: inline-block;
+                        cursor: pointer;
+                        border: none;
+                        background-color: #e7e7e7;
+                        color: black;
+                      "
+                      (click)="setQuantity('+', product)"
+                    >
+                      +
+                    </button>
+                    <button (click)="removeItem(product)" class="btn btn-sm btn-danger">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
+                  <div class="col-md-8 d-flex justify-content-end">
+                    Total: <b>₹{{
+                      getTotalRoundOf(product.total)
+                    }}</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </ng-container>
+  <div class="card m-2">
+    <div class="row g-0 p-3">
+      <div class="col-md-4 d-grid gap-2 d-md-block">
+        <button (click)="emptycart()" class="btn btn-danger btn-sm">Empty Cart</button>
+        <button routerLink="/products" class="btn btn-primary btn-sm">Shop More</button>
+      </div>
+      <div class="col-md-8 d-flex justify-content-end">
+        Grand Total: <b>₹{{ grandTotal }}</b>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="products.length == 0">
+  <div class="container mt-5">
+    <div class="card p-5">
+      <div class="card-text">
+        <h4>Your cart is empty!</h4>
+        <h6>Add product to it now</h6>
+        <button routerLink="/products" class="btn btn-primary">Shop Now</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

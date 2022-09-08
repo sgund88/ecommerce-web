@@ -1,0 +1,15 @@
+.rating-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.rating {
+  background-color: green;
+  color: aliceblue;
+  border-radius: 5px;
+  justify-content: center;
+  padding: 0 5px;
+  width: fit-content;
+}
